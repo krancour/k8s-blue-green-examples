@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: demo
+  namespace: demo
+spec:
+  hosts:
+  - demo.example.com
+  - uat.demo.example.com
+  gateways:
+  - demo
+  http:
+  - match:
+    - authority:
+        exact: demo.example.com
+    route:
+    - destination:
+        host: demo
+        subset: v1-0-0
+  - match:
+    - authority:
+        exact: uat.demo.example.com
+    route:
+    - destination:
+        host: demo
+        subset: v1-1-0

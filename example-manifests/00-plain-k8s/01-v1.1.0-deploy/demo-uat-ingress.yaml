@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-uat
+  namespace: demo
+  annotations:
+    ingress.kubernetes.io/auth-type: basic
+    ingress.kubernetes.io/auth-secret: demo-uat-auth
+spec:
+  rules:
+  - host: uat.demo.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: demo-v1-1-0
+          servicePort: 80
+status:
+  loadBalancer: {}

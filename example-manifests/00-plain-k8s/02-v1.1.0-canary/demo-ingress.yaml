@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo
+  namespace: demo
+  annotations:
+    traefik.ingress.kubernetes.io/service-weights: |
+      demo-v1-0-0: 90%
+      demo-v1-1-0: 10%
+spec:
+  rules:
+  - host: demo.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: demo-v1-0-0
+          servicePort: 80
+      - backend:
+          serviceName: demo-v1-1-0
+          servicePort: 80
+status:
+  loadBalancer: {}

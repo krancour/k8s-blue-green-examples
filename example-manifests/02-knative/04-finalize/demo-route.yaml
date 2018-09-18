@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Route
+metadata:
+  name: demo
+  namespace: demo
+spec:
+  traffic:
+  - revisionName: demo-00002
+    percent: 100

@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: demo-v1-0-0
+  namespace: demo
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: demo
+        version: "v1.0.0"
+    spec:
+      containers: 
+      - name: demo
+        image: krancour/blue-green-demo:v1.0.0
+        ports:
+        - name: http
+          containerPort: 8080
